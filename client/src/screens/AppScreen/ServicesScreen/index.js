@@ -5,6 +5,11 @@ import AmbulanceTypeCard from '../../../components/AmbulanceTypeCard';
 import AmbulanceTypesData from '../../../components/data/AmbulanceTypesData';
 import OtherServicesData from '../../../components/data/OtherServicesData';
 import colors from '../../../config/colors';
+import { createStackNavigator } from '@react-navigation/stack';
+import routes from '../../../navigation/routes';
+import AmbulanceTypeInfoScreen from './AmbulanceTypeInfoScreen';
+
+const Stack = createStackNavigator()
 
 function ServicesScreen(props) {
     return (
@@ -15,7 +20,7 @@ function ServicesScreen(props) {
                 {
                     AmbulanceTypesData.map((value) => {
                         return (
-                            <AmbulanceTypeCard name={value.name} key={value.id} />
+                            <AmbulanceTypeCard name={value.name} key={value.id} index={value.id} />
                         )
                     })
                 }

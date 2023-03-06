@@ -1,11 +1,20 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import colors from '../config/colors';
+import { useNavigation } from '@react-navigation/native';
+import routes from '../navigation/routes';
 
-function AmbulanceTypeCard({ name, image }) {
+function AmbulanceTypeCard({ name, image, index }) {
+
+    const navigation = useNavigation()
+
+    const handlePress = () => {
+        navigation.navigate(routes.AMBULANCETYPEINFO, { index: index })
+    }
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.imageContainer} activeOpacity={0.8}>
+            <TouchableOpacity style={styles.imageContainer} activeOpacity={0.8} onPress={handlePress}>
                 <Image source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} style={styles.ambulanceImage} />
             </TouchableOpacity>
             <Text style={styles.ambulanceTypeText} numberOfLines={1}>{name}</Text>

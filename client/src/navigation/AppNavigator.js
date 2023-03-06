@@ -1,43 +1,86 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Touchable } from 'react-native';
-import { BottomNavigation, Text } from 'react-native-paper'
+import { View, StyleSheet, Touchable, TouchableOpacity } from 'react-native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 // internal imports
 import HomeScreen from './../screens/AppScreen/HomeScreen'
-import ServicesScreen from './../screens/AppScreen/ServicesScreen'
 import ActivityScreen from './../screens/AppScreen/ActivityScreen'
 import ProfileScreen from './../screens/AppScreen/ProfileScreen'
 import colors from '../config/colors';
+import routes from './routes';
+import ServicesScreenNavigator from './ServicesScreenNavigator';
+
+const Tab = createBottomTabNavigator();
 
 function AppNavigator(props) {
 
-    const [index, setIndex] = useState(0);
-
-    const [routes] = useState([
-        { key: 'home', title: 'Home', focusedIcon: 'home', unfocusedIcon: 'home-outline' },
-        { key: 'services', title: 'Services', focusedIcon: 'apps' },
-        { key: 'activity', title: 'Activity', focusedIcon: 'history' },
-        { key: 'profile', title: 'Profile', focusedIcon: 'account', unfocusedIcon: 'account-outline' },
-    ]);
-
-    const renderScene = BottomNavigation.SceneMap({
-        home: HomeScreen,
-        services: ServicesScreen,
-        activity: ActivityScreen,
-        profile: ProfileScreen,
-    });
+    const [focus, setFocus] = useState(0)
 
     return (
-        <BottomNavigation
-            navigationState={{ index, routes }}
-            onIndexChange={setIndex}
-            renderScene={renderScene}
-            shifting={true}
-            activeColor={colors.primary}
-            theme={{ colors: { secondaryContainer: 'transparent' } }} // for the background effect on tab when it's active
-            inactiveColor={colors.gray900}
-            barStyle={{ backgroundColor: colors.white, borderColor: colors.primary, borderTopWidth: 1 }}
-        />
+        <Tab.Navigator
+            initialRouteName={routes.HOMEAPPSCREEN}
+            screenOptions={({ route }) => ({
+                headerShown: false,
+                tabBarActiveTintColor: colors.primary,
+                tabBarStyle: { height: '8%' },
+                tabBarInactiveTintColor: colors.gray900,
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+                    if (route.name === routes.HOMEAPPSCREEN) {
+                        iconName = focused
+                            ? 'home'
+                            : 'home-outline';
+                    } else if (route.name === routes.SERVICESROUTE) {
+                        iconName = focused
+                            ? 'apps'
+                            : 'apps';
+                    }
+                    else if (route.name === routes.ACTIVITYAPPSCREEN) {
+                        iconName = focused
+                            ? 'history'
+                            : 'history';
+                    }
+                    else if (route.name === routes.PROFILEAPPSCREEN) {
+                        iconName = focused
+                            ? 'account'
+                            : 'account-outline';
+                    }
+                    return (
+                        <Icon
+                            name={iconName}
+                            size={30}
+                            color={color}
+                            style={focused ? { transform: [{ translateY: -2 }] } : { transform: [{ translateY: 0 }] }}
+                        />
+                    );
+                }
+            })}>
+            <Tab.Screen
+                name={routes.HOMEAPPSCREEN}
+                component={HomeScreen}
+                options={{
+                    tabBarLabel: () => { return null },
+                }} />
+            <Tab.Screen
+                name={routes.SERVICESROUTE}
+                component={ServicesScreenNavigator}
+                options={{
+                    tabBarLabel: () => { return null },
+                }} />
+            <Tab.Screen
+                name={routes.ACTIVITYAPPSCREEN}
+                component={ActivityScreen}
+                options={{
+                    tabBarLabel: () => { return null },
+                }} />
+            <Tab.Screen
+                name={routes.PROFILEAPPSCREEN}
+                component={ProfileScreen}
+                options={{
+                    tabBarLabel: () => { return null },
+                }} />
+        </Tab.Navigator>
     );
 }
 
