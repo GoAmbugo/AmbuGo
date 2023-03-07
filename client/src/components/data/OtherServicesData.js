@@ -2,7 +2,13 @@ export default services = [
     {
         id: 0,
         image: '',
-        name: 'Standby',
+        name: 'Book a Doctor',
+        description: [],
+    },
+    {
+        id: 1,
+        image: '',
+        name: 'Equipments',
         description: [],
     },
 ]
