@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+
 import ProfileCards from '../../../components/ProfileCards';
 import ProfileListItem from '../../../components/ProfileListItem';
 import colors from '../../../config/colors';
 
 function ProfileScreen(props) {
+
     return (
         <View style={styles.container}>
             <View style={styles.nameAccountContainer}>
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
         paddingVertical: 24,
         backgroundColor: colors.gray100,
         flexGrow: 100
-    }
+    },
 });
 
 export default ProfileScreen;

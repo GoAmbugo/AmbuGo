@@ -24,11 +24,12 @@ function AmbulanceTypeInfoScreen({ route, navigation }) {
     return (
         <View style={styles.container}>
             <View style={{ height: '100%' }} >
+                <TouchableOpacity style={styles.backButton} onPress={handleBackPress} activeOpacity={0.8}>
+                    <Icon name='arrow-left' size={25} color={colors.gray900} />
+                </TouchableOpacity>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Image source={{ uri: 'https://i.dummyjson.com/data/products/8/2.jpg' }} style={styles.image} />
-                    <TouchableOpacity style={styles.backButton} onPress={handleBackPress} activeOpacity={0.8}>
-                        <Icon name='arrow-left' size={25} color={colors.gray900} />
-                    </TouchableOpacity>
+
                     <Text style={styles.title}>{ambuInfo.name}</Text>
                     <View style={styles.descriptionContainer}>
                         {ambuInfo.description.map((item, key) => {
@@ -76,14 +77,16 @@ const styles = StyleSheet.create({
         margin: 12,
         elevation: 4,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        zIndex: 10
     },
     title: {
         color: colors.gray900,
         fontSize: 28,
         fontWeight: 700,
         alignSelf: 'center',
-        paddingVertical: 12
+        paddingVertical: 12,
+        letterSpacing: 1
     },
     descriptionText: {
         color: colors.gray900,
