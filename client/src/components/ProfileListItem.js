@@ -46,7 +46,7 @@ function ProfileListItem({ name = 'account-multiple', text, color, size }) {
         <>
             <TouchableOpacity activeOpacity={0.5} onPress={() => handlePress(text)}>
                 <View style={styles.container}>
-                    <Icon name={name} size={35} color={colors.primary} />
+                    <Icon name={name} size={35} color={color} />
                     <Text style={styles.text}>{text}</Text>
                 </View>
             </TouchableOpacity>

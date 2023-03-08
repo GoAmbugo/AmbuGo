@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView, TouchableHighlight } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import colors from '../../../../config/colors';
 import legalData from './../../../../components/data/LegalData';
+import { TouchableRipple } from 'react-native-paper';
 
 function LegalScreen({ navigation }) {
 
@@ -23,9 +24,9 @@ function LegalScreen({ navigation }) {
                         {
                             legalData.map((item) => {
                                 return (
-                                    <TouchableHighlight style={styles.itemContainer} underlayColor={colors.gray100} onPress={() => { }} key={item.id}>
+                                    <TouchableRipple style={styles.itemContainer} rippleColor={colors.gray300} onPress={() => { }} key={item.id}>
                                         <Text style={styles.itemName}>{item.name}</Text>
-                                    </TouchableHighlight>
+                                    </TouchableRipple>
                                 )
                             })
                         }
@@ -58,10 +59,11 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: 700,
         letterSpacing: 1,
-        marginTop: '15%',
+        paddingTop: '15%',
+        paddingBottom: 16,
         paddingHorizontal: 28,
         marginHorizontal: 4,
-        borderBottomWidth: 1
+        backgroundColor: colors.gray100
     },
     itemsContainer: {
         paddingVertical: 20
