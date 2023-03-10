@@ -6,6 +6,15 @@ export default Object.freeze({
     SERVICESROUTE: "ServicesRoute",
     ACTIVITYAPPSCREEN: "ActivityAppScreen",
     SERVICESAPPSCREEN: "ServicesAppScreen",
+    PROFILEROUTE: "ProfileRoute",
     PROFILEAPPSCREEN: "ProfileAppScreen",
-    AMBULANCETYPEINFO: "AmbulanceTypeInfoScreen"
+    AMBULANCETYPEINFO: "AmbulanceTypeInfoScreen",
+    HELPSCREEN: "HelpScreen",
+    WALLETSCREEN: "WalletScreen",
+    RIDESCREEN: "RideScreen",
+    MESSAGESCREEN: "MessageScreen",
+    COUPONSCREEN: "CouponsScreen",
+    REFERSCREEN: "ReferScreen",
+    SETTINGSCREEN: "SettingsScreen",
+    LEGALSCREEN: "LegalScreen",
 })

@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Touchable, TouchableOpacity} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // internal imports
 import HomeNavigator from './HomeNavigator';
 import ActivityScreen from './../screens/AppScreen/ActivityScreen';
-import ProfileScreen from './../screens/AppScreen/ProfileScreen';
 import colors from '../config/colors';
 import routes from './routes';
 import ServicesScreenNavigator from './ServicesScreenNavigator';
+import ProfileScreenNavigator from './ProfileScreenNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,12 +19,12 @@ function AppNavigator(props) {
   return (
     <Tab.Navigator
       initialRouteName={routes.HOMEAPPSCREEN}
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
-        tabBarStyle: {height: '8%'},
+        tabBarStyle: { height: '8%' },
         tabBarInactiveTintColor: colors.gray900,
-        tabBarIcon: ({focused, color, size}) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === routes.HOMEAPPSCREEN) {
             iconName = focused ? 'home' : 'home-outline';
@@ -32,7 +32,7 @@ function AppNavigator(props) {
             iconName = focused ? 'apps' : 'apps';
           } else if (route.name === routes.ACTIVITYAPPSCREEN) {
             iconName = focused ? 'history' : 'history';
-          } else if (route.name === routes.PROFILEAPPSCREEN) {
+          } else if (route.name === routes.PROFILEROUTE) {
             iconName = focused ? 'account' : 'account-outline';
           }
           return (
@@ -42,8 +42,8 @@ function AppNavigator(props) {
               color={color}
               style={
                 focused
-                  ? {transform: [{translateY: -2}]}
-                  : {transform: [{translateY: 0}]}
+                  ? { transform: [{ translateY: -2 }] }
+                  : { transform: [{ translateY: 0 }] }
               }
             />
           );
@@ -77,8 +77,8 @@ function AppNavigator(props) {
         }}
       />
       <Tab.Screen
-        name={routes.PROFILEAPPSCREEN}
-        component={ProfileScreen}
+        name={routes.PROFILEROUTE}
+        component={ProfileScreenNavigator}
         options={{
           tabBarLabel: () => {
             return null;

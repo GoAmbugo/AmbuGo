@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+
 import ProfileCards from '../../../components/ProfileCards';
 import ProfileListItem from '../../../components/ProfileListItem';
 import colors from '../../../config/colors';
 
 function ProfileScreen(props) {
+
     return (
         <View style={styles.container}>
             <View style={styles.nameAccountContainer}>
@@ -12,17 +14,17 @@ function ProfileScreen(props) {
                 <Image source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} style={styles.accountImage} />
             </View>
             <ScrollView horizontal={true}>
-                <ProfileCards color={colors.primary} name='help-circle' size={40} text='Help' />
-                <ProfileCards color={colors.primary} name='wallet' size={40} text='Wallet' />
-                <ProfileCards color={colors.primary} name='ambulance' size={40} text='Ride' />
+                <ProfileCards color={colors.gray600} name='help-circle' size={40} text='Help' />
+                <ProfileCards color={colors.gray600} name='wallet-outline' size={40} text='Wallet' />
+                <ProfileCards color={colors.gray600} name='ambulance' size={40} text='Ride' />
             </ScrollView>
             <View style={styles.bottomContainer}>
-                <ProfileListItem text='Message' name='message' />
-                <ProfileListItem text='Coupons' name='sale' />
-                <ProfileListItem text='Refer friends to get deals' name='account-multiple' />
-                <ProfileListItem text='Settings' name='account-settings' />
-                <ProfileListItem text='Legal' name='file-document-outline' />
-                <ProfileListItem text='Log out' name='power' />
+                <ProfileListItem text='Message' name='message' color={colors.gray600} />
+                <ProfileListItem text='Coupons' name='sale' color={colors.gray600} />
+                <ProfileListItem text='Refer friends to get deals' name='account-multiple' color={colors.gray600} />
+                <ProfileListItem text='Settings' name='account-settings' color={colors.gray600} />
+                <ProfileListItem text='Legal' name='file-document-outline' color={colors.gray600} />
+                <ProfileListItem text='Log out' name='power' color={colors.gray600} />
             </View>
         </View>
     );
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
     },
     nameText: {
         fontSize: 20,
-        color: colors.primary,
+        color: colors.gray600,
         fontWeight: 700
     },
     accountImage: {
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
         paddingVertical: 24,
         backgroundColor: colors.gray100,
         flexGrow: 100
-    }
+    },
 });
 
 export default ProfileScreen;

@@ -1,44 +1,45 @@
-export default types = [
+export default legalData = [
     {
         id: 0,
         image: '',
-        name: 'Collective',
+        name: 'Copyright',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
-        startingPrice: '235.40'
+
     },
     {
         id: 1,
         image: '',
-        name: 'Individual',
+        name: 'Terms & Conditions',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
-        startingPrice: '235.40'
     },
     {
         id: 2,
         image: '',
-        name: 'Mobile ICU',
+        name: 'Privacy Policy',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore .", "Lorem ipsum dolor sit."],
-        startingPrice: '235.40'
     },
     {
         id: 3,
         image: '',
-        name: 'MVA',
+        name: 'Data Providers',
         description: ["e et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
-        startingPrice: '235.40'
     },
     {
         id: 4,
         image: '',
-        name: 'Neonatal',
+        name: 'Software licenses',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
-        startingPrice: '235.40'
     },
     {
         id: 5,
         image: '',
-        name: 'Hospital/Tent',
+        name: 'Location information',
         description: ["Lo dolore magna aliqua.", "Lorem ipsum dolor sit amet, aliqua."],
-        startingPrice: '235.40'
+    },
+    {
+        id: 6,
+        image: '',
+        name: 'City regulations',
+        description: ["Lo dolore magna aliqua.", "Lorem ipsum dolor sit amet, aliqua."],
     },
 ]
