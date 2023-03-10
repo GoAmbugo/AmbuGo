@@ -4,10 +4,10 @@ import MapView, {Marker} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '@env';
 import {useRoute, useNavigation} from '@react-navigation/native';
+import GoBack from '../../components/GoBack';
 
 const MapReview = props => {
   const route = useRoute();
-  const navigation = useNavigation();
 
   const {originPlace, destinationPlace} = route.params;
   const originLoc = {
@@ -23,6 +23,7 @@ const MapReview = props => {
 
   return (
     <View style={styles.container}>
+      <GoBack />
       <MapView
         style={styles.map}
         initialRegion={{

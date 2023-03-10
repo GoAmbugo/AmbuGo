@@ -6,13 +6,14 @@ import DestinationSearch from '../../DestinationSearch';
 function HomeScreen(props) {
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.timenavigate}>
+      <View style={{...styles.infoDisplay, paddingTop: 20}}>
         <HomeSearch />
       </View>
 
-
       {/* extra content here */}
-
+      <View style={styles.infoDisplay}></View>
+      <View style={styles.infoDisplay}></View>
+      <View style={styles.infoDisplay}></View>
     </ScrollView>
   );
 }
@@ -23,21 +24,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
   },
-  timenavigate: {
-    backgroundColor: '#ffffff',
-    borderRadius: 30,
-    marginVertical: 5,
-    marginHorizontal: 3,
-    paddingTop: 30,
-    borderBottomWidth: 0,
-    elevation: 3,
-  },
   infoDisplay: {
     backgroundColor: '#ffffff',
     borderRadius: 30,
     marginVertical: 5,
     marginHorizontal: 3,
-    elevation: 3,
+    elevation: 5,
   },
 });
 

@@ -4,6 +4,7 @@ import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import {useNavigation} from '@react-navigation/native';
 import {GOOGLE_MAPS_API_KEY} from '@env';
 import PlaceRow from './placeRow';
+import GoBack from '../../components/GoBack';
 
 const DestinationSearch = props => {
   const [originPlace, setoriginPlace] = useState(null);
@@ -25,6 +26,7 @@ const DestinationSearch = props => {
 
   return (
     <View style={styles.container}>
+      <GoBack />
       <GooglePlacesAutocomplete
         placeholder="Where from?"
         debounce={300}
@@ -64,7 +66,7 @@ const DestinationSearch = props => {
         suppressDefaultStyles
         styles={{
           textInput: styles.textinput,
-          container: {...styles.plcontainer, top: 55},
+          container: {...styles.plcontainer, top: 85},
           seperator: styles.seperator,
         }}
         renderRow={data => <PlaceRow data={data} />}
@@ -94,10 +96,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     marginVertical: 5,
     marginLeft: 20,
+    marginRight: 10,
   },
   plcontainer: {
     position: 'absolute',
-    top: 0,
+    backgroundColor: '#fff',
+    top: 37,
     left: 10,
     right: 10,
   },
@@ -110,28 +114,28 @@ const styles = StyleSheet.create({
     top: 105,
   },
   circle: {
-    width: 5,
-    height: 5,
-    backgroundColor: 'black',
+    width: 7,
+    height: 7,
+    backgroundColor: '#434343',
     position: 'absolute',
-    top: 20,
+    top: 63,
     left: 15,
     borderRadius: 5,
   },
   line: {
-    width: 1,
-    height: 50,
+    width: 2,
+    height: 42,
     backgroundColor: '#c4c4c4',
     position: 'absolute',
-    top: 25,
+    top: 70,
     left: 17,
   },
   square: {
-    width: 5,
-    height: 5,
+    width: 7,
+    height: 7,
     backgroundColor: 'black',
     position: 'absolute',
-    top: 75,
+    top: 112,
     left: 15,
   },
 });

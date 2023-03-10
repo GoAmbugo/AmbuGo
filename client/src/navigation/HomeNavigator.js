@@ -18,6 +18,5 @@ export default HomeNavigator = () => {
       <Stack.Screen name="destination-search" component={DestinationSearch} />
       <Stack.Screen name="map-review" component={MapReview} />
     </Stack.Navigator>
-
   );
 };

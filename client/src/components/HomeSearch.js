@@ -2,6 +2,7 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
@@ -14,20 +15,19 @@ const HomeSearch = props => {
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('destination-search');
-            console.log('hlo');
           }}>
           <View style={styles.row1}>
-            <AntDesign name={'search1'} size={16} color={'#434343'} />
+            <Feather name={'search'} size={24} color={'#000000'} />
             <Text style={styles.inputText}>Where To?</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.timeContainer}>
-          <AntDesign name={'clockcircle'} size={16} color={'#434343'} />
-          <Text style={{color: '#434343'}}>Now</Text>
+          <AntDesign name={'clockcircle'} size={16} color={'#000000'} />
+          <Text style={{color: '#434343', fontWeight: 800}}>Now</Text>
           <MaterialIcons
             name={'keyboard-arrow-down'}
-            size={16}
-            color={'#535353'}
+            size={24}
+            color={'#000000'}
           />
         </View>
       </View>
@@ -59,18 +59,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderRadius: 50,
+    borderRadius: 20,
   },
-  inputText: {color: '#434343', marginLeft: 5},
+  inputText: {color: '#434343', marginLeft: 15, fontWeight: 700},
   timeContainer: {
     flexDirection: 'row',
-    width: 100,
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 100,
+    width: 110,
     padding: 10,
     backgroundColor: '#fff',
-    borderRadius: 50,
+    borderRadius: 10,
+    elevation: 20,
   },
 
   row1: {
