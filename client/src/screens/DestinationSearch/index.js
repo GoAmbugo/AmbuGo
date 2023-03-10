@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ecf0f1',
+    padding: 5,
   },
   textinput: {
     padding: 10,
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#c4c4c4',
     position: 'absolute',
-    top: 20,
+    top: 25,
     left: 17,
   },
   square: {
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     height: 5,
     backgroundColor: 'black',
     position: 'absolute',
-    top: 80,
+    top: 75,
     left: 15,
   },
 });

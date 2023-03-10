@@ -1,5 +1,5 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useState} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '@env';
@@ -41,6 +41,47 @@ const MapReview = props => {
         />
         <Marker coordinate={originLoc} title={'Origin'} />
         <Marker coordinate={destinationLoc} title={'Destination'} />
+
+        {/* {ambus.map(ambu => ( */}
+        <Marker
+          coordinate={{
+            latitude: originLoc.latitude + 0.005,
+            longitude: originLoc.longitude + 0.005,
+          }}>
+          <Image
+            style={{
+              width: 90,
+              height: 90,
+              resizeMode: 'contain',
+              transform: [
+                {
+                  rotate: `70deg`,
+                },
+              ],
+            }}
+            source={require('../../assets/images/ambu.png')}
+          />
+        </Marker>
+        <Marker
+          coordinate={{
+            latitude: originLoc.latitude + 0.005,
+            longitude: originLoc.longitude - 0.005,
+          }}>
+          <Image
+            style={{
+              width: 90,
+              height: 90,
+              resizeMode: 'contain',
+              transform: [
+                {
+                  rotate: `10deg`,
+                },
+              ],
+            }}
+            source={require('../../assets/images/ambu.png')}
+          />
+        </Marker>
+        {/* ))} */}
       </MapView>
     </View>
   );
