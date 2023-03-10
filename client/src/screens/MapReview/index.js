@@ -4,12 +4,14 @@ import MapView, {Marker} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '@env';
 import {useRoute, useNavigation} from '@react-navigation/native';
+
 import GoBack from '../../components/GoBack';
 
 const MapReview = props => {
   const route = useRoute();
 
-  const {originPlace, destinationPlace} = route.params;
+  const {originPlace, destinationPlace, date} = route.params;
+  console.log(date);
   const originLoc = {
     latitude: originPlace.details.geometry.location.lat,
     longitude: originPlace.details.geometry.location.lng,

@@ -12,16 +12,13 @@ import AmbulanceTypesData from '../../../../components/data/AmbulanceTypesData';
 import colors from '../../../../config/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import routes from '../../../../navigation/routes';
+import GoBack from '../../../../components/GoBack';
 
 function AmbulanceTypeInfoScreen({route, navigation}) {
   const {index} = route.params;
   const ambuInfo = AmbulanceTypesData.find(info => {
     return info.id === index;
   });
-
-  const handleBackPress = () => {
-    navigation.goBack();
-  };
 
   const handleGetStarted = () => {
     navigation.pop();
@@ -31,12 +28,7 @@ function AmbulanceTypeInfoScreen({route, navigation}) {
   return (
     <View style={styles.container}>
       <View style={{height: '100%'}}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={handleBackPress}
-          activeOpacity={0.8}>
-          <Icon name="arrow-left" size={25} color={colors.gray900} />
-        </TouchableOpacity>
+        <GoBack />
         <ScrollView showsVerticalScrollIndicator={false}>
           <Image
             source={{uri: 'https://i.dummyjson.com/data/products/8/2.jpg'}}

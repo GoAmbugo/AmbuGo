@@ -1,13 +1,29 @@
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 const HomeSearch = props => {
   const navigation = useNavigation();
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    console.log('A date has been picked: ', date);
+    hideDatePicker();
+    navigation.navigate('destination-search', {date: date.toString()});
+  };
   return (
     <View>
       <View style={styles.inputBox}>
@@ -21,15 +37,23 @@ const HomeSearch = props => {
             <Text style={styles.inputText}>Where To?</Text>
           </View>
         </TouchableOpacity>
-        <View style={styles.timeContainer}>
-          <AntDesign name={'clockcircle'} size={16} color={'#000000'} />
-          <Text style={{color: '#434343', fontWeight: 800}}>Now</Text>
-          <MaterialIcons
-            name={'keyboard-arrow-down'}
-            size={24}
-            color={'#000000'}
-          />
-        </View>
+        <TouchableOpacity onPress={showDatePicker}>
+          <View style={styles.timeContainer}>
+            <AntDesign name={'clockcircle'} size={16} color={'#000000'} />
+            <Text style={{color: '#434343', fontWeight: 800}}>Now</Text>
+            <MaterialIcons
+              name={'keyboard-arrow-down'}
+              size={24}
+              color={'#000000'}
+            />
+          </View>
+        </TouchableOpacity>
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="datetime"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
       </View>
 
       {/* {Previous destinations} */}

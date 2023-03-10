@@ -11,17 +11,18 @@ const Stack = createStackNavigator();
 
 export default ScreenNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen
         name={routes.SERVICESAPPSCREEN}
         component={ServicesScreen}
-        options={{headerShown: false}}
       />
       <Stack.Screen
         name={routes.AMBULANCETYPEINFO}
         component={AmbulanceTypeInfoScreen}
         options={{
-          headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       />

@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, TextInput, SafeAreaView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {GOOGLE_MAPS_API_KEY} from '@env';
 import PlaceRow from './placeRow';
 import GoBack from '../../components/GoBack';
@@ -10,12 +10,20 @@ const DestinationSearch = props => {
   const [originPlace, setoriginPlace] = useState(null);
   const [destinationPlace, setdestinationPlace] = useState(null);
   const navigation = useNavigation();
-
+  const route = useRoute();
+  let date = route.params;
+  if (date) {
+    console.log(date);
+  } else {
+    const cur_date = new Date();
+    date = cur_date.toString();
+  }
   const checkNavigation = () => {
     if (originPlace && destinationPlace) {
       navigation.navigate('map-review', {
         originPlace,
         destinationPlace,
+        date,
       });
     }
   };
