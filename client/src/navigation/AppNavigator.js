@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // internal imports
@@ -19,12 +19,12 @@ function AppNavigator(props) {
   return (
     <Tab.Navigator
       initialRouteName={routes.HOMEAPPSCREEN}
-      screenOptions={({ route }) => ({
+      screenOptions={({route}) => ({
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
-        tabBarStyle: { height: '8%' },
+        tabBarStyle: {height: '8%'},
         tabBarInactiveTintColor: colors.gray900,
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({focused, color, size}) => {
           let iconName;
           if (route.name === routes.HOMEAPPSCREEN) {
             iconName = focused ? 'home' : 'home-outline';
@@ -42,8 +42,8 @@ function AppNavigator(props) {
               color={color}
               style={
                 focused
-                  ? { transform: [{ translateY: -2 }] }
-                  : { transform: [{ translateY: 0 }] }
+                  ? {transform: [{translateY: -2}]}
+                  : {transform: [{translateY: 0}]}
               }
             />
           );

@@ -1,20 +1,29 @@
 import {StyleSheet, Text, View, TextInput, SafeAreaView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {GOOGLE_MAPS_API_KEY} from '@env';
 import PlaceRow from './placeRow';
+import GoBack from '../../components/GoBack';
 
 const DestinationSearch = props => {
   const [originPlace, setoriginPlace] = useState(null);
   const [destinationPlace, setdestinationPlace] = useState(null);
   const navigation = useNavigation();
-
+  const route = useRoute();
+  let date = route.params;
+  if (date) {
+    console.log(date);
+  } else {
+    const cur_date = new Date();
+    date = cur_date.toString();
+  }
   const checkNavigation = () => {
     if (originPlace && destinationPlace) {
       navigation.navigate('map-review', {
         originPlace,
         destinationPlace,
+        date,
       });
     }
   };
@@ -25,6 +34,7 @@ const DestinationSearch = props => {
 
   return (
     <View style={styles.container}>
+      <GoBack />
       <GooglePlacesAutocomplete
         placeholder="Where from?"
         debounce={300}
@@ -64,7 +74,7 @@ const DestinationSearch = props => {
         suppressDefaultStyles
         styles={{
           textInput: styles.textinput,
-          container: {...styles.plcontainer, top: 55},
+          container: {...styles.plcontainer, top: 85},
           seperator: styles.seperator,
         }}
         renderRow={data => <PlaceRow data={data} />}
@@ -87,16 +97,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ecf0f1',
+    padding: 5,
   },
   textinput: {
     padding: 10,
     backgroundColor: '#eee',
     marginVertical: 5,
     marginLeft: 20,
+    marginRight: 10,
   },
   plcontainer: {
     position: 'absolute',
-    top: 0,
+    backgroundColor: '#fff',
+    top: 37,
     left: 10,
     right: 10,
   },
@@ -109,28 +122,28 @@ const styles = StyleSheet.create({
     top: 105,
   },
   circle: {
-    width: 5,
-    height: 5,
-    backgroundColor: 'black',
+    width: 7,
+    height: 7,
+    backgroundColor: '#434343',
     position: 'absolute',
-    top: 20,
+    top: 63,
     left: 15,
     borderRadius: 5,
   },
   line: {
-    width: 1,
-    height: 50,
+    width: 2,
+    height: 42,
     backgroundColor: '#c4c4c4',
     position: 'absolute',
-    top: 20,
+    top: 70,
     left: 17,
   },
   square: {
-    width: 5,
-    height: 5,
+    width: 7,
+    height: 7,
     backgroundColor: 'black',
     position: 'absolute',
-    top: 80,
+    top: 112,
     left: 15,
   },
 });
