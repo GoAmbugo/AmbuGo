@@ -49,7 +49,7 @@ function App() {
     <AuthContext.Provider value={{user, setUser}}>
       <PaperProvider theme={navigationTheme}>
         <NavigationContainer theme={navigationTheme}>
-          {user ? <AppNavigator /> : <AppNavigator />}
+          {user ? <AppNavigator /> : <AuthNavigator />}
         </NavigationContainer>
       </PaperProvider>
     </AuthContext.Provider>

@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../config/colors';
 import { useNavigation } from '@react-navigation/native';
 import routes from '../navigation/routes';
+import AuthContext from '../auth/context';
 
 function ProfileListItem({ name = 'account-multiple', text, color, size }) {
 
     const navigation = useNavigation()
+    const authContext = useContext(AuthContext)
 
     const showAlert = () =>
         Alert.alert(
@@ -16,7 +18,10 @@ function ProfileListItem({ name = 'account-multiple', text, color, size }) {
             [
                 {
                     text: 'Yes',
-                    onPress: () => { /*log out the current user*/ },
+                    onPress: () => {
+                        /*log out the current user*/
+                        authContext.setUser(null)
+                    },
                     style: 'default',
                 },
                 {
