@@ -1,22 +1,52 @@
-import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import colors from '../../config/colors';
 import AppNumberInput from '../../components/AppNumberInput';
 import AppCountryInput from '../../components/AppCountryInput';
 import routes from '../../navigation/routes';
 import ErrorText from '../../components/ErrorText';
+import { API_BASE_URL } from '@env';
 
-function AuthenticationScreen({navigation, route}) {
+function AuthenticationScreen({ navigation, route }) {
   const [country, setCountry] = useState(1);
   const [phone, setPhone] = useState();
   const [error, setError] = useState();
 
-  const handleVerifyOTP = () => {
+  const handleVerifyOTP = async () => {
     if (!phone || phone.toString().length <= 9 || phone.toString().length >= 11)
       return setError('Please enter a valid phone number!');
     setError('');
     // console.log(phone.toString())
-    navigation.navigate(routes.VERIFYOTP, {country: country, phone: phone});
+
+    try {
+      const response = await fetch(`${API_BASE_URL}sendotp/`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "phone": "+91-7976051917" })
+      });
+
+      // let json = await response.json();
+
+      if (response.status === 200) {
+        navigation.navigate(routes.VERIFYOTP, { country: country, phone: phone });
+      }
+      else if (response.status === 400) {
+        alert('Enter correct phone number and try again.')
+      }
+      else if (response.status === 500) {
+        alert('It was us :( Please try again')
+      }
+      else {
+        alert(response.status)
+      }
+
+    } catch (error) {
+      alert('Please try again')
+    }
+
   };
 
   useEffect(() => {

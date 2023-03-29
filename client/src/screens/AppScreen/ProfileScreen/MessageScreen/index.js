@@ -3,7 +3,6 @@ import {
   View,
   StyleSheet,
   Text,
-  TouchableOpacity,
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,9 +11,10 @@ import colors from '../../../../config/colors';
 import GoBack from '../../../../components/GoBack';
 
 function MessageScreen() {
+
   return (
     <View style={styles.container}>
-      <View style={{height: '100%'}}>
+      <View style={{ height: '100%' }}>
         <GoBack />
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.title}>Message</Text>

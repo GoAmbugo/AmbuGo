@@ -16,12 +16,12 @@ export default AuthNavigator = () => {
       <Stack.Screen
         name={routes.WELCOME}
         component={WelcomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name={routes.AUTHENTICATION}
         component={AuthenticationScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name={routes.VERIFYOTP}

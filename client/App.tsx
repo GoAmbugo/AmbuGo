@@ -1,20 +1,14 @@
 // third party imports
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, PermissionsAndroid, Platform} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
 
 // within app import
-import AppNavigator from './src/navigation/AppNavigator';
-import AuthNavigator from './src/navigation/AuthNavigator';
-import navigationTheme from './src/navigation/navigationTheme';
-import AuthContext from './src/auth/context';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {AuthProvider} from './src/auth/context';
+import AppNav from './src/navigation/AppNav';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
-function App() {
-  const [user, setUser] = useState();
-
+const App = () => {
   const androidPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -46,15 +40,11 @@ function App() {
   }, []);
 
   return (
-    <AuthContext.Provider value={{user, setUser}}>
-      <PaperProvider theme={navigationTheme}>
-        <NavigationContainer theme={navigationTheme}>
-          {user ? <AppNavigator /> : <AuthNavigator />}
-        </NavigationContainer>
-      </PaperProvider>
-    </AuthContext.Provider>
+    <AuthProvider>
+      <AppNav />
+    </AuthProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 

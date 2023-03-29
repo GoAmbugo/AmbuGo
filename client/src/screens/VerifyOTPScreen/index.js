@@ -1,4 +1,4 @@
-import React, {useRef, useState, useContext, useEffect} from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -14,7 +14,8 @@ import routes from '../../navigation/routes';
 
 import CountryData from '../../components/data/CountryData';
 import OtpField from './OtpField';
-import AuthContext from './../../auth/context';
+import { AuthContext } from './../../auth/context';
+import { API_BASE_URL } from '@env';
 
 function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -33,12 +34,12 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-function VerifyOTPScreen({navigation, route}) {
+function VerifyOTPScreen({ navigation, route }) {
   const details = route.params;
   const userPhone = `${CountryData[details.country - 1].code} ${details.phone}`;
   // console.log(details)
 
-  const authContext = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const ref1 = useRef();
   const ref2 = useRef();
@@ -57,7 +58,40 @@ function VerifyOTPScreen({navigation, route}) {
   const [resendTime, setResendTime] = useState(59);
   const [resendOtp, setResendOtp] = useState(false);
 
-  const handleProceed = () => {
+  const handleVerifyOtp = async () => {
+
+    try {
+      const response = await fetch(`${API_BASE_URL}verifyotp/`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "phone": "+91-7976051917", "otp-code": enteredPin.toString() })
+      });
+
+      // let json = await response.json();
+
+      if (response.status === 200) {
+        login()
+      }
+      else if (response.status === 401) {
+        alert('Incorrect OTP')
+      }
+      else if (response.status === 500) {
+        alert('It was us :( Please try again')
+      }
+      else {
+        alert(response.status)
+      }
+
+    } catch (error) {
+      alert('Please try again')
+    }
+
+  }
+
+  const handleProceed = async () => {
     if (
       !pin1 ||
       pin1 === '' ||
@@ -77,7 +111,8 @@ function VerifyOTPScreen({navigation, route}) {
     setEnteredPin(pin1 + pin2 + pin3 + pin4 + pin5 + pin6);
 
     // check whether the entered OTP matches the send OTP, if yes then setUser to the currentUser
-    authContext.setUser('Neeraj');
+
+    await handleVerifyOtp()
   };
 
   const resendOtpButtonPress = () => {
@@ -91,6 +126,11 @@ function VerifyOTPScreen({navigation, route}) {
       setResendOtp(true);
     }
   }, [resendTime]);
+
+  useEffect(() => {
+    setEnteredPin(pin1 + pin2 + pin3 + pin4 + pin5 + pin6);
+  }, [pin1, pin2, pin3, pin4, pin5, pin6])
+
 
   useInterval(() => {
     setResendTime(resendTime - 1);
