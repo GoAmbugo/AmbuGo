@@ -36,14 +36,59 @@ class SendOtp(APIView):
                     to=phone, channel="sms"
                 )
 
-                print(message.status)
-
                 if message.status == 'pending':
                     return Response({'message': 'OTP sent successfully', 'success': 'true'}, status=status.HTTP_200_OK)
                 else:
                     return Response({'message': 'Some error occurred. Please try again.', 'success': 'false'}, status=status.HTTP_404_NOT_FOUND)
             except:
-                return Response({'message': 'OTP not sent', 'success': 'false'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                # too many requests -> 429 status code
+                return Response({'message': 'Maximum limit reached and OTP not sent', 'success': 'false'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        else:
+            return Response({'message': 'Invalid request', 'success': 'false'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ResendOtp(APIView):
+
+    def post(self, request):
+
+        if 'phone' in request.data:
+
+            if 'isZero' in request.data:
+
+                phone = request.data['phone']
+                isZero = request.data['isZero']
+
+                check_phone = re.search(r"^(\+91-)[6-9]\d{9}$", phone)
+
+                if not check_phone:
+                    return Response({'message': 'Incorrect format for phone', 'success': 'false'}, status=status.HTTP_400_BAD_REQUEST)
+
+                if isZero != "true":
+                    return Response({'message': 'Invalid request', 'success': 'false'}, status=status.HTTP_400_BAD_REQUEST)
+
+                phone = os.environ['verified_number']
+                account_sid = os.environ['account_sid']
+                auth_token = os.environ['auth_token']
+                verify_sid = os.environ['verify_sid']
+
+                client = Client(account_sid, auth_token)
+
+                try:
+                    message = client.verify.v2.services(verify_sid).verifications.create(
+                        to=phone, channel="sms"
+                    )
+
+                    if message.status == 'pending':
+                        return Response({'message': 'OTP resent successfully', 'success': 'true'}, status=status.HTTP_200_OK)
+                    else:
+                        return Response({'message': 'Some error occurred. Please try again.', 'success': 'false'}, status=status.HTTP_404_NOT_FOUND)
+                except:
+                    # too many requests -> 429 status code
+                    return Response({'message': 'Maximum limit reached and OTP not sent. Try again after some time', 'success': 'false'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+            else:
+                return Response({'message': 'Invalid request', 'success': 'false'}, status=status.HTTP_400_BAD_REQUEST)
 
         else:
             return Response({'message': 'Invalid request', 'success': 'false'}, status=status.HTTP_400_BAD_REQUEST)
