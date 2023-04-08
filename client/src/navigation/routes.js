@@ -2,6 +2,7 @@ export default Object.freeze({
   WELCOME: 'WelcomeScreen',
   AUTHENTICATION: 'AuthenticationScreen',
   VERIFYOTP: 'VerifyOTPScreen',
+  ONBOARDINGSCREEN: 'OnBoardingScreen',
   HOMEAPPSCREEN: 'HomeAppScreen',
   SERVICESROUTE: 'ServicesRoute',
   ACTIVITYAPPSCREEN: 'ActivityAppScreen',

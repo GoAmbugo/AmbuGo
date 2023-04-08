@@ -1,10 +1,10 @@
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 const HomeSearch = props => {
@@ -22,7 +22,7 @@ const HomeSearch = props => {
   const handleConfirm = date => {
     console.log('A date has been picked: ', date);
     hideDatePicker();
-    navigation.navigate('destination-search', {date: date.toString()});
+    navigation.navigate('destination-search', { date: date.toString() });
   };
   return (
     <View>
@@ -40,7 +40,7 @@ const HomeSearch = props => {
         <TouchableOpacity onPress={showDatePicker}>
           <View style={styles.timeContainer}>
             <AntDesign name={'clockcircle'} size={16} color={'#000000'} />
-            <Text style={{color: '#434343', fontWeight: 800}}>Now</Text>
+            <Text style={{ color: '#434343', fontWeight: 800 }}>Now</Text>
             <MaterialIcons
               name={'keyboard-arrow-down'}
               size={24}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
   },
-  inputText: {color: '#434343', marginLeft: 15, fontWeight: 700},
+  inputText: { color: '#434343', marginLeft: 15, fontWeight: 700 },
   timeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

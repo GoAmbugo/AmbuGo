@@ -16,6 +16,7 @@ import CountryData from '../../components/data/CountryData';
 import OtpField from './OtpField';
 import { AuthContext } from './../../auth/context';
 import { API_BASE_URL } from '@env';
+import { verifyOtpNetworkRequest } from '../../services/NetworkRequestsServices';
 
 function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -39,7 +40,7 @@ function VerifyOTPScreen({ navigation, route }) {
   const userPhone = `${CountryData[details.country - 1].code} ${details.phone}`;
   // console.log(details)
 
-  const { login } = useContext(AuthContext);
+  const { login, register } = useContext(AuthContext);
 
   const ref1 = useRef();
   const ref2 = useRef();
@@ -61,19 +62,30 @@ function VerifyOTPScreen({ navigation, route }) {
   const handleVerifyOtp = async () => {
 
     try {
-      const response = await fetch(`${API_BASE_URL}verifyotp/`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ "phone": "+91-7976051917", "otp-code": enteredPin.toString() })
-      });
 
-      // let json = await response.json();
+      const response = await verifyOtpNetworkRequest("+91-7976051917", enteredPin.toString())
+
+      let data = await response.json();
 
       if (response.status === 200) {
-        login()
+        // already existing user
+        const tokens = data.token
+        await login(tokens)
+      }
+      else if (response.status === 201) {
+        // newly registered user
+        const tokens = data.token
+        await register(tokens)
+
+        // navigate to the On-Boarding screen by resetting the current state
+        navigation.reset({
+          index: 0,
+          routes: [
+            {
+              name: routes.ONBOARDINGSCREEN,
+            },
+          ],
+        })
       }
       else if (response.status === 401) {
         alert('Incorrect OTP')
@@ -81,8 +93,8 @@ function VerifyOTPScreen({ navigation, route }) {
       else if (response.status === 500) {
         alert('It was us :( Please try again')
       }
-      else {
-        alert(response.status)
+      else if (response.status === 400) {
+
       }
 
     } catch (error) {

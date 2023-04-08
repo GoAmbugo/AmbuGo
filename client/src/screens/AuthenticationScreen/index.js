@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+
 import colors from '../../config/colors';
 import AppNumberInput from '../../components/AppNumberInput';
 import AppCountryInput from '../../components/AppCountryInput';
 import routes from '../../navigation/routes';
 import ErrorText from '../../components/ErrorText';
-import { API_BASE_URL } from '@env';
+import { sendOtpNetworkRequest } from '../../services/NetworkRequestsServices';
 
 function AuthenticationScreen({ navigation, route }) {
   const [country, setCountry] = useState(1);
@@ -19,15 +20,7 @@ function AuthenticationScreen({ navigation, route }) {
     // console.log(phone.toString())
 
     try {
-      const response = await fetch(`${API_BASE_URL}sendotp/`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ "phone": "+91-7976051917" })
-      });
-
+      const response = await sendOtpNetworkRequest("+91-7976051917")
       // let json = await response.json();
 
       if (response.status === 200) {

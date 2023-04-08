@@ -5,6 +5,7 @@ import {StyleSheet, PermissionsAndroid, Platform} from 'react-native';
 // within app import
 import {AuthProvider} from './src/auth/context';
 import AppNav from './src/navigation/AppNav';
+import OnBoardingScreen from './src/screens/OnBoardingScreen';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 

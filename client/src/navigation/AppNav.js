@@ -11,7 +11,7 @@ import navigationTheme from './navigationTheme';
 
 function AppNav(props) {
 
-    const { isLoading, user, authTokens } = useContext(AuthContext);
+    const { isLoading, user } = useContext(AuthContext);
 
     return (
         <PaperProvider theme={navigationTheme}>

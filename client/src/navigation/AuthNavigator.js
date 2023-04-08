@@ -7,6 +7,7 @@ import routes from './routes';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import AuthenticationScreen from '../screens/AuthenticationScreen';
 import VerifyOTPScreen from '../screens/VerifyOTPScreen';
+import OnBoardingScreen from '../screens/OnBoardingScreen';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,14 @@ export default AuthNavigator = () => {
       <Stack.Screen
         name={routes.VERIFYOTP}
         component={VerifyOTPScreen}
+        options={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name={routes.ONBOARDINGSCREEN}
+        component={OnBoardingScreen}
         options={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
