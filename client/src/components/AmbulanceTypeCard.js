@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity, Image, Text} from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import colors from '../config/colors';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import routes from '../navigation/routes';
 
-function AmbulanceTypeCard({name, image, index}) {
+function AmbulanceTypeCard({ name, image, index }) {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate(routes.AMBULANCETYPEINFO, {index: index});
+    navigation.navigate(routes.AMBULANCETYPEINFO, { index: index });
   };
 
   return (
@@ -18,11 +18,11 @@ function AmbulanceTypeCard({name, image, index}) {
         activeOpacity={0.8}
         onPress={handlePress}>
         <Image
-          source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+          source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
           style={styles.ambulanceImage}
         />
       </TouchableOpacity>
-      <Text style={styles.ambulanceTypeText} numberOfLines={1}>
+      <Text style={styles.ambulanceTypeText} numberOfLines={2}>
         {name}
       </Text>
     </View>
@@ -32,7 +32,7 @@ function AmbulanceTypeCard({name, image, index}) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   imageContainer: {
     marginHorizontal: 12,
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     fontWeight: 700,
     color: colors.gray900,
+    textAlign: 'center'
   },
 });
 

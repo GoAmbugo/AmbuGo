@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,28 +9,32 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconMat from 'react-native-vector-icons/MaterialIcons';
-import {TouchableRipple} from 'react-native-paper';
+import { TouchableRipple } from 'react-native-paper';
 
 import colors from '../../../../config/colors';
 import SettingsScreenData from '../../../../components/data/SettingsScreenData';
 import GoBack from '../../../../components/GoBack';
+import { AuthContext } from '../../../../auth/context';
 
 function SettingsScreen() {
+
+  const { user } = useContext(AuthContext)
+
   return (
     <View style={styles.container}>
-      <View style={{height: '100%'}}>
+      <View style={{ height: '100%' }}>
         <GoBack />
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.title}>Settings</Text>
 
           <TouchableRipple
-            onPress={() => {}}
+            onPress={() => { }}
             rippleColor={colors.white}
-            style={{backgroundColor: colors.gray100}}>
+            style={{ backgroundColor: colors.gray100 }}>
             <View style={styles.outerContainer}>
               <View style={styles.imageContainer}>
                 <Image
-                  source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                  source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
                   style={styles.image}
                 />
               </View>
@@ -43,9 +47,9 @@ function SettingsScreen() {
                 }}>
                 <View style={styles.detailsContainer}>
                   <Text style={styles.nameText} numberOfLines={1}>
-                    Kunal Sharma
+                    {user['first_name'] + ' ' + user['last_name']}
                   </Text>
-                  <Text style={styles.phoneText}>+91 8700215187</Text>
+                  <Text style={styles.phoneText}>{user['phone']}</Text>
                 </View>
                 <IconMat
                   name="arrow-forward-ios"
@@ -55,17 +59,17 @@ function SettingsScreen() {
               </View>
             </View>
           </TouchableRipple>
-          <View style={{marginVertical: 20}}>
+          <View style={{ marginVertical: 20 }}>
             {SettingsScreenData.map(item => {
               return (
                 <View style={styles.listContainer} key={item.id}>
                   <Icon name={item.icon} size={30} color={colors.gray600} />
                   <TouchableRipple
-                    onPress={() => {}}
+                    onPress={() => { }}
                     rippleColor={colors.gray300}
                     style={styles.listRippleContainer}>
                     <View style={styles.listItemContainer}>
-                      <View style={{maxWidth: '75%', gap: 10}}>
+                      <View style={{ maxWidth: '75%', gap: 10 }}>
                         <Text numberOfLines={1} style={styles.nameText}>
                           {item.name}
                         </Text>
@@ -91,9 +95,9 @@ function SettingsScreen() {
 
           <View style={styles.bottomContainer}>
             <Text style={styles.nameText}>Trusted contacts</Text>
-            <View style={{marginTop: 8}}>
+            <View style={{ marginTop: 8 }}>
               <View
-                style={{flexDirection: 'row', gap: 6, alignItems: 'center'}}>
+                style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
                 <Icon
                   name="account-multiple"
                   size={16}
@@ -114,7 +118,7 @@ function SettingsScreen() {
             </Text>
           </View>
 
-          <View style={{height: 40}}></View>
+          <View style={{ height: 40 }}></View>
         </ScrollView>
       </View>
     </View>

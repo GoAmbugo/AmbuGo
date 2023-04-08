@@ -2,42 +2,42 @@ export default types = [
     {
         id: 0,
         image: '',
-        name: 'Collective',
+        name: 'Patient Transport',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
         startingPrice: '235.40'
     },
     {
         id: 1,
         image: '',
-        name: 'Individual',
+        name: 'BLS',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
         startingPrice: '235.40'
     },
     {
         id: 2,
         image: '',
-        name: 'Mobile ICU',
+        name: 'ALS',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore .", "Lorem ipsum dolor sit."],
         startingPrice: '235.40'
     },
     {
         id: 3,
         image: '',
-        name: 'MVA',
+        name: 'Mortuary',
         description: ["e et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
         startingPrice: '235.40'
     },
     {
         id: 4,
         image: '',
-        name: 'Neonatal',
+        name: 'Intercity',
         description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
         startingPrice: '235.40'
     },
     {
         id: 5,
         image: '',
-        name: 'Hospital/Tent',
+        name: 'Standby',
         description: ["Lo dolore magna aliqua.", "Lorem ipsum dolor sit amet, aliqua."],
         startingPrice: '235.40'
     },

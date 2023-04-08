@@ -2,3 +2,5 @@
 
 # local virtual environment
 ambugoenv/
+
+**/__pycache__

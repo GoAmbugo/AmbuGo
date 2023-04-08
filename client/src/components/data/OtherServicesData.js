@@ -8,7 +8,7 @@ export default services = [
     {
         id: 1,
         image: '',
-        name: 'Equipments',
+        name: 'Become a Member',
         description: [],
     },
 ]

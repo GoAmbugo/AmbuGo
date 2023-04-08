@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 
 import ProfileCards from '../../../components/ProfileCards';
 import ProfileListItem from '../../../components/ProfileListItem';
 import colors from '../../../config/colors';
+import { AuthContext } from '../../../auth/context';
 
 function ProfileScreen(props) {
+
+    const { user } = useContext(AuthContext)
 
     return (
         <View style={styles.container}>
             <View style={styles.nameAccountContainer}>
-                <Text style={styles.nameText}>Kunal Sharma</Text>
+                <Text style={styles.nameText}>{user['first_name'] + ' ' + user['last_name']}</Text>
                 <Image source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} style={styles.accountImage} />
             </View>
             <ScrollView horizontal={true}>
